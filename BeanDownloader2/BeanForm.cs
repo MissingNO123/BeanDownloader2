@@ -31,7 +31,7 @@ namespace BeanDownloader2
             }
         }
 
-        private async void buttonDownload_ClickAsync(object sender, EventArgs e)
+        private void buttonDownload_Click(object sender, EventArgs e)
         {
             buttonDownload.Enabled = false;
             buttonDownload.Text = "DOWNLOAD?";

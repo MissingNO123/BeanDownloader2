@@ -50,10 +50,8 @@
             this.labelDislikeCount = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.buttonOpenDownloads = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picboxThumbnail = new System.Windows.Forms.PictureBox();
             this.groupBoxStatistics.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxThumbnail)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,7 +133,7 @@
             this.radioButtonVideo.AutoSize = true;
             this.radioButtonVideo.BackColor = System.Drawing.Color.Transparent;
             this.radioButtonVideo.ForeColor = System.Drawing.SystemColors.Control;
-            this.radioButtonVideo.Location = new System.Drawing.Point(603, 41);
+            this.radioButtonVideo.Location = new System.Drawing.Point(603, 40);
             this.radioButtonVideo.Name = "radioButtonVideo";
             this.radioButtonVideo.Size = new System.Drawing.Size(52, 17);
             this.radioButtonVideo.TabIndex = 8;
@@ -148,7 +146,7 @@
             this.radioButtonAudio.BackColor = System.Drawing.Color.Transparent;
             this.radioButtonAudio.Checked = true;
             this.radioButtonAudio.ForeColor = System.Drawing.SystemColors.Control;
-            this.radioButtonAudio.Location = new System.Drawing.Point(545, 41);
+            this.radioButtonAudio.Location = new System.Drawing.Point(545, 40);
             this.radioButtonAudio.Name = "radioButtonAudio";
             this.radioButtonAudio.Size = new System.Drawing.Size(52, 17);
             this.radioButtonAudio.TabIndex = 8;
@@ -163,13 +161,13 @@
             this.buttonDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDownload.ForeColor = System.Drawing.SystemColors.Control;
-            this.buttonDownload.Location = new System.Drawing.Point(504, 66);
+            this.buttonDownload.Location = new System.Drawing.Point(504, 67);
             this.buttonDownload.Name = "buttonDownload";
             this.buttonDownload.Size = new System.Drawing.Size(286, 56);
             this.buttonDownload.TabIndex = 10;
             this.buttonDownload.Text = "DOWNLOAD?";
             this.buttonDownload.UseVisualStyleBackColor = false;
-            this.buttonDownload.Click += new System.EventHandler(this.buttonDownload_ClickAsync);
+            this.buttonDownload.Click += new System.EventHandler(this.buttonDownload_Click);
             // 
             // groupBoxStatistics
             // 
@@ -185,7 +183,7 @@
             this.groupBoxStatistics.Controls.Add(this.labelLikeCount);
             this.groupBoxStatistics.Controls.Add(this.labelDislikeCount);
             this.groupBoxStatistics.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBoxStatistics.Location = new System.Drawing.Point(504, 162);
+            this.groupBoxStatistics.Location = new System.Drawing.Point(504, 163);
             this.groupBoxStatistics.Name = "groupBoxStatistics";
             this.groupBoxStatistics.Size = new System.Drawing.Size(286, 79);
             this.groupBoxStatistics.TabIndex = 11;
@@ -284,7 +282,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.ForeColor = System.Drawing.SystemColors.Control;
-            this.checkBox1.Location = new System.Drawing.Point(662, 42);
+            this.checkBox1.Location = new System.Drawing.Point(662, 41);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(128, 17);
             this.checkBox1.TabIndex = 12;
@@ -297,22 +295,12 @@
             this.buttonOpenDownloads.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.buttonOpenDownloads.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonOpenDownloads.ForeColor = System.Drawing.SystemColors.Control;
-            this.buttonOpenDownloads.Location = new System.Drawing.Point(504, 129);
+            this.buttonOpenDownloads.Location = new System.Drawing.Point(504, 130);
             this.buttonOpenDownloads.Name = "buttonOpenDownloads";
             this.buttonOpenDownloads.Size = new System.Drawing.Size(285, 23);
             this.buttonOpenDownloads.TabIndex = 13;
             this.buttonOpenDownloads.Text = "Open Downloads Folder";
             this.buttonOpenDownloads.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::BeanDownloader2.Properties.Resources.astolfo_borb_dance;
-            this.pictureBox1.Location = new System.Drawing.Point(663, 445);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(126, 110);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
             // 
             // picboxThumbnail
             // 
@@ -331,7 +319,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.ClientSize = new System.Drawing.Size(801, 567);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.buttonOpenDownloads);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBoxStatistics);
@@ -352,7 +339,6 @@
             this.Text = "Bean";
             this.groupBoxStatistics.ResumeLayout(false);
             this.groupBoxStatistics.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picboxThumbnail)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -383,7 +369,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button buttonOpenDownloads;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
