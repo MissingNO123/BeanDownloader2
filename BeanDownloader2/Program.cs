@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace BeanDownloader2
@@ -14,9 +12,26 @@ namespace BeanDownloader2
         [STAThread]
         static void Main()
         {
+            //setup
+            if (!File.Exists(@"ffmpeg.exe"))
+            {
+                Console.WriteLine("FFMpeg not found, Downloading...");
+                using (var client = new System.Net.WebClient())
+                {
+                    client.DownloadFile("https://github.com/vot/ffbinaries-prebuilt/releases/download/v4.0/ffmpeg-4.0.1-win-64.zip", "ffmpeg.zip");
+                }
+                Console.WriteLine("Unzipping...");
+                System.IO.Compression.ZipFile.ExtractToDirectory("ffmpeg.zip", @".\");
+                Console.WriteLine("Cleaning Up...");
+                File.Delete(@"ffmpeg.zip");
+                Directory.Delete(@"__MACOSX", true);
+            }
+            
+            System.IO.Directory.CreateDirectory(@".\Downloads");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new BeanForm());
         }
     }
 }
