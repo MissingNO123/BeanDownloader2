@@ -301,6 +301,7 @@
             this.buttonOpenDownloads.TabIndex = 13;
             this.buttonOpenDownloads.Text = "Open Downloads Folder";
             this.buttonOpenDownloads.UseVisualStyleBackColor = false;
+            this.buttonOpenDownloads.Click += new System.EventHandler(this.buttonOpenDownloads_Click);
             // 
             // picboxThumbnail
             // 
