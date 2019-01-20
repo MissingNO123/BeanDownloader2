@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using YoutubeExplode;
@@ -39,9 +40,11 @@ namespace BeanDownloader2
 
         private void buttonDownload_Click(object sender, EventArgs e)
         {
+            var safeVideoTitle = Regex.Replace(videoTitle, "[\\\\<>:\"/\\|\\?\\*]", "_", RegexOptions.IgnoreCase);
             buttonDownload.Enabled = false;
             buttonDownload.Text = "DOWNLOAD?";
-            var path = "Downloads\\" + videoTitle + (radioButtonAudio.Checked ? ".mp3" : ".mp4");
+
+            var path = "Downloads\\" + safeVideoTitle + (radioButtonAudio.Checked ? ".mp3" : ".mp4");
             DownloadForm dl = new DownloadForm(videoID, path);
             dl.Show();
             buttonDownload.Enabled = true;
