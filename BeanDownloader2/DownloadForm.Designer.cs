@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadForm));
             this.label1 = new System.Windows.Forms.Label();
             this.progressBarDownload = new System.Windows.Forms.ProgressBar();
             this.labelPercent = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.notifyIconDownload = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,18 +78,37 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(536, 25);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 24);
+            this.buttonCancel.TabIndex = 4;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // notifyIconDownload
+            // 
+            this.notifyIconDownload.BalloonTipTitle = "Download Complete";
+            this.notifyIconDownload.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconDownload.Icon")));
+            this.notifyIconDownload.Text = "Bean is downloading...";
+            this.notifyIconDownload.Visible = true;
+            // 
             // DownloadForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(557, 61);
+            this.ClientSize = new System.Drawing.Size(624, 61);
+            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelPercent);
             this.Controls.Add(this.progressBarDownload);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "DownloadForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DownloadForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -98,5 +121,7 @@
         private System.Windows.Forms.ProgressBar progressBarDownload;
         private System.Windows.Forms.Label labelPercent;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.NotifyIcon notifyIconDownload;
     }
 }
