@@ -13,7 +13,7 @@ using YoutubeExplode;
 using YoutubeExplode.Converter;
 using YoutubeExplode.Exceptions;
 using YoutubeExplode.Internal;
-using YoutubeExplode.Internal.Parsers;
+//using YoutubeExplode.Internal.Parsers;
 using YoutubeExplode.Models.MediaStreams;
 
 namespace BeanDownloader2
@@ -21,10 +21,12 @@ namespace BeanDownloader2
     public partial class BeanForm : Form
     {
         string videoTitle = "", videoAuthor = "", videoDesc = "", videoID = "";
+        string [] audioFormats = {".mp3", ".flac"};
+        string [] videoFormats = {".mp4", ".webm"};
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void StatsCBToggle(object sender, EventArgs e)
         {
-            if (checkBox1.Checked == true)
+            if (checkBoxStats.Checked == true)
             {
                 groupBoxStatistics.Visible = true;
             } else
@@ -38,15 +40,21 @@ namespace BeanDownloader2
             Process.Start(@".\Downloads");
         }
 
+        private void radioButtonAudio_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBoxFormat.DataSource = radioButtonAudio.Checked ? audioFormats : videoFormats;
+        }
+
         private void buttonDownload_Click(object sender, EventArgs e)
         {
             var safeVideoTitle = Regex.Replace(videoTitle, "[\\\\<>:\"/\\|\\?\\*]", "_", RegexOptions.IgnoreCase);
             buttonDownload.Enabled = false;
             buttonDownload.Text = "DOWNLOAD?";
 
-            var path = "Downloads\\" + safeVideoTitle + (radioButtonAudio.Checked ? ".mp3" : ".mp4");
+            var path = "Downloads\\" + safeVideoTitle + 
+                (radioButtonAudio.Checked ? audioFormats[comboBoxFormat.SelectedIndex] : videoFormats[comboBoxFormat.SelectedIndex]);
             DownloadForm dl = new DownloadForm(videoID, path);
-            dl.Show();
+            dl.ShowDialog();
             buttonDownload.Enabled = true;
             buttonDownload.Text = "DOWNLOAD!!!";
         }
@@ -58,6 +66,7 @@ namespace BeanDownloader2
             labelLikeCount.Text = "";
             labelDislikeCount.Text = "";
             labelKeywords.Text = "";
+            comboBoxFormat.DataSource = audioFormats;
         }
 
         private async void txtboxURL_TextChangedAsync(object sender, EventArgs e)

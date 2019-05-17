@@ -48,9 +48,10 @@
             this.labelViews = new System.Windows.Forms.Label();
             this.labelLikeCount = new System.Windows.Forms.Label();
             this.labelDislikeCount = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxStats = new System.Windows.Forms.CheckBox();
             this.buttonOpenDownloads = new System.Windows.Forms.Button();
             this.picboxThumbnail = new System.Windows.Forms.PictureBox();
+            this.comboBoxFormat = new System.Windows.Forms.ComboBox();
             this.groupBoxStatistics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxThumbnail)).BeginInit();
             this.SuspendLayout();
@@ -70,7 +71,7 @@
             // 
             this.labelURL.AutoSize = true;
             this.labelURL.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelURL.Location = new System.Drawing.Point(501, 15);
+            this.labelURL.Location = new System.Drawing.Point(501, 14);
             this.labelURL.Name = "labelURL";
             this.labelURL.Size = new System.Drawing.Size(32, 13);
             this.labelURL.TabIndex = 2;
@@ -100,6 +101,7 @@
             this.txtboxVideoDesc.Name = "txtboxVideoDesc";
             this.txtboxVideoDesc.Size = new System.Drawing.Size(473, 205);
             this.txtboxVideoDesc.TabIndex = 4;
+            this.txtboxVideoDesc.TabStop = false;
             this.txtboxVideoDesc.Text = "Description";
             // 
             // labelVideoAuthor
@@ -133,7 +135,7 @@
             this.radioButtonVideo.AutoSize = true;
             this.radioButtonVideo.BackColor = System.Drawing.Color.Transparent;
             this.radioButtonVideo.ForeColor = System.Drawing.SystemColors.Control;
-            this.radioButtonVideo.Location = new System.Drawing.Point(603, 40);
+            this.radioButtonVideo.Location = new System.Drawing.Point(597, 39);
             this.radioButtonVideo.Name = "radioButtonVideo";
             this.radioButtonVideo.Size = new System.Drawing.Size(52, 17);
             this.radioButtonVideo.TabIndex = 8;
@@ -146,13 +148,14 @@
             this.radioButtonAudio.BackColor = System.Drawing.Color.Transparent;
             this.radioButtonAudio.Checked = true;
             this.radioButtonAudio.ForeColor = System.Drawing.SystemColors.Control;
-            this.radioButtonAudio.Location = new System.Drawing.Point(545, 40);
+            this.radioButtonAudio.Location = new System.Drawing.Point(539, 39);
             this.radioButtonAudio.Name = "radioButtonAudio";
             this.radioButtonAudio.Size = new System.Drawing.Size(52, 17);
             this.radioButtonAudio.TabIndex = 8;
             this.radioButtonAudio.TabStop = true;
             this.radioButtonAudio.Text = "Audio";
             this.radioButtonAudio.UseVisualStyleBackColor = false;
+            this.radioButtonAudio.CheckedChanged += new System.EventHandler(this.radioButtonAudio_CheckedChanged);
             // 
             // buttonDownload
             // 
@@ -161,10 +164,10 @@
             this.buttonDownload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDownload.ForeColor = System.Drawing.SystemColors.Control;
-            this.buttonDownload.Location = new System.Drawing.Point(504, 67);
+            this.buttonDownload.Location = new System.Drawing.Point(504, 65);
             this.buttonDownload.Name = "buttonDownload";
             this.buttonDownload.Size = new System.Drawing.Size(286, 56);
-            this.buttonDownload.TabIndex = 10;
+            this.buttonDownload.TabIndex = 4;
             this.buttonDownload.Text = "DOWNLOAD?";
             this.buttonDownload.UseVisualStyleBackColor = false;
             this.buttonDownload.Click += new System.EventHandler(this.buttonDownload_Click);
@@ -183,7 +186,7 @@
             this.groupBoxStatistics.Controls.Add(this.labelLikeCount);
             this.groupBoxStatistics.Controls.Add(this.labelDislikeCount);
             this.groupBoxStatistics.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBoxStatistics.Location = new System.Drawing.Point(504, 163);
+            this.groupBoxStatistics.Location = new System.Drawing.Point(504, 161);
             this.groupBoxStatistics.Name = "groupBoxStatistics";
             this.groupBoxStatistics.Size = new System.Drawing.Size(286, 79);
             this.groupBoxStatistics.TabIndex = 11;
@@ -278,27 +281,27 @@
             this.labelDislikeCount.TabIndex = 5;
             this.labelDislikeCount.Text = "label6";
             // 
-            // checkBox1
+            // checkBoxStats
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.ForeColor = System.Drawing.SystemColors.Control;
-            this.checkBox1.Location = new System.Drawing.Point(662, 41);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(128, 17);
-            this.checkBox1.TabIndex = 12;
-            this.checkBox1.Text = "Show Video Statistics";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxStats.AutoSize = true;
+            this.checkBoxStats.ForeColor = System.Drawing.SystemColors.Control;
+            this.checkBoxStats.Location = new System.Drawing.Point(740, 40);
+            this.checkBoxStats.Name = "checkBoxStats";
+            this.checkBoxStats.Size = new System.Drawing.Size(50, 17);
+            this.checkBoxStats.TabIndex = 3;
+            this.checkBoxStats.Text = "Stats";
+            this.checkBoxStats.UseVisualStyleBackColor = true;
+            this.checkBoxStats.CheckedChanged += new System.EventHandler(this.StatsCBToggle);
             // 
             // buttonOpenDownloads
             // 
             this.buttonOpenDownloads.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.buttonOpenDownloads.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonOpenDownloads.ForeColor = System.Drawing.SystemColors.Control;
-            this.buttonOpenDownloads.Location = new System.Drawing.Point(504, 130);
+            this.buttonOpenDownloads.Location = new System.Drawing.Point(504, 128);
             this.buttonOpenDownloads.Name = "buttonOpenDownloads";
             this.buttonOpenDownloads.Size = new System.Drawing.Size(285, 23);
-            this.buttonOpenDownloads.TabIndex = 13;
+            this.buttonOpenDownloads.TabIndex = 5;
             this.buttonOpenDownloads.Text = "Open Downloads Folder";
             this.buttonOpenDownloads.UseVisualStyleBackColor = false;
             this.buttonOpenDownloads.Click += new System.EventHandler(this.buttonOpenDownloads_Click);
@@ -314,14 +317,31 @@
             this.picboxThumbnail.TabIndex = 0;
             this.picboxThumbnail.TabStop = false;
             // 
+            // comboBoxFormat
+            // 
+            this.comboBoxFormat.BackColor = System.Drawing.Color.Black;
+            this.comboBoxFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxFormat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBoxFormat.ForeColor = System.Drawing.SystemColors.Control;
+            this.comboBoxFormat.FormattingEnabled = true;
+            this.comboBoxFormat.Items.AddRange(new object[] {
+            "Audio (MP3)",
+            "Video (MP4)",
+            "Video (WEBM)"});
+            this.comboBoxFormat.Location = new System.Drawing.Point(655, 38);
+            this.comboBoxFormat.Name = "comboBoxFormat";
+            this.comboBoxFormat.Size = new System.Drawing.Size(79, 21);
+            this.comboBoxFormat.TabIndex = 2;
+            // 
             // BeanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(16)))), ((int)(((byte)(16)))));
             this.ClientSize = new System.Drawing.Size(801, 567);
+            this.Controls.Add(this.comboBoxFormat);
             this.Controls.Add(this.buttonOpenDownloads);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxStats);
             this.Controls.Add(this.groupBoxStatistics);
             this.Controls.Add(this.buttonDownload);
             this.Controls.Add(this.radioButtonAudio);
@@ -368,8 +388,9 @@
         private System.Windows.Forms.ProgressBar progressBarLikeRatio;
         private System.Windows.Forms.Label labelKeywords;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxStats;
         private System.Windows.Forms.Button buttonOpenDownloads;
+        private System.Windows.Forms.ComboBox comboBoxFormat;
     }
 }
 

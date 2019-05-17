@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DownloadForm));
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelDownloading = new System.Windows.Forms.Label();
             this.progressBarDownload = new System.Windows.Forms.ProgressBar();
             this.labelPercent = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -39,15 +39,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // labelDownloading
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(61, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Downloading";
+            this.labelDownloading.AutoSize = true;
+            this.labelDownloading.ForeColor = System.Drawing.SystemColors.Control;
+            this.labelDownloading.Location = new System.Drawing.Point(61, 9);
+            this.labelDownloading.Name = "labelDownloading";
+            this.labelDownloading.Size = new System.Drawing.Size(78, 13);
+            this.labelDownloading.TabIndex = 0;
+            this.labelDownloading.Text = "Downloading...";
             // 
             // progressBarDownload
             // 
@@ -105,7 +105,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelPercent);
             this.Controls.Add(this.progressBarDownload);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelDownloading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "DownloadForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DownloadForm_FormClosing);
@@ -117,7 +117,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelDownloading;
         private System.Windows.Forms.ProgressBar progressBarDownload;
         private System.Windows.Forms.Label labelPercent;
         private System.Windows.Forms.PictureBox pictureBox1;

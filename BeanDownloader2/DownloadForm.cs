@@ -27,7 +27,7 @@ namespace BeanDownloader2
         { 
             try
             {
-                var ytConverter = new YoutubeConverter();
+                YoutubeConverter ytConverter = new YoutubeConverter();
                 CancellationToken token = cts.Token; 
                 //await ytConverter.DownloadVideoAsync(videoID, path, progressIndicator);
                 Progress<double> progressd = new Progress<double>();
@@ -50,6 +50,7 @@ namespace BeanDownloader2
 
         private void DownloadForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            labelDownloading.Text = "Cancelling...";
             // Request cancellation.
             cts.Cancel();
             Console.WriteLine("Cancellation set in token source...");
