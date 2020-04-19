@@ -14,7 +14,7 @@ using YoutubeExplode.Converter;
 using YoutubeExplode.Exceptions;
 using YoutubeExplode.Internal;
 //using YoutubeExplode.Internal.Parsers;
-using YoutubeExplode.Models.MediaStreams;
+//using YoutubeExplode.Models.MediaStreams;
 
 namespace BeanDownloader2
 {
@@ -48,6 +48,7 @@ namespace BeanDownloader2
         private void buttonDownload_Click(object sender, EventArgs e)
         {
             var safeVideoTitle = Regex.Replace(videoTitle, "[\\\\<>:\"/\\|\\?\\*]", "_", RegexOptions.IgnoreCase);
+            safeVideoTitle = Regex.Replace(safeVideoTitle, @"^(CON)$|^(PRN)$|^(AUX)$|^(NUL)$|^(COM\d)$|^(LPT\d)$", "$&_", RegexOptions.IgnoreCase);
             buttonDownload.Enabled = false;
             buttonDownload.Text = "DOWNLOAD?";
 
@@ -83,18 +84,19 @@ namespace BeanDownloader2
                 var ytClient = new YoutubeClient();
                 try
                 {
-                    videoID = YoutubeClient.ParseVideoId(txtboxURL.Text);
-                    var video = await ytClient.GetVideoAsync(videoID);
+                    //videoID = YoutubeClient.ParseVideoId(txtboxURL.Text);
+                    var video = await ytClient.Videos.GetAsync(txtboxURL.Text);
+                    videoID = video.Id;
                     picboxThumbnail.Load(video.Thumbnails.MediumResUrl);
-                    Console.WriteLine(video.Thumbnails.MediumResUrl);
+                    //Console.WriteLine(video.Thumbnails.MediumResUrl);
                     videoTitle = labelVideoTitle.Text = video.Title;
                     videoAuthor = labelVideoAuthor.Text = video.Author;
                     videoDesc = txtboxVideoDesc.Text = video.Description;
                     labelDuration.Text = video.Duration.ToString();
-                    labelViewCount.Text = String.Format("{0:n0}", video.Statistics.ViewCount);
-                    labelLikeCount.Text = String.Format("{0:n0}", video.Statistics.LikeCount);
-                    labelDislikeCount.Text = String.Format("{0:n0}", video.Statistics.DislikeCount);
-                    progressBarLikeRatio.Value = (int)(video.Statistics.AverageRating * 100);
+                    labelViewCount.Text = String.Format("{0:n0}", video.Engagement.ViewCount);
+                    labelLikeCount.Text = String.Format("{0:n0}", video.Engagement.LikeCount);
+                    labelDislikeCount.Text = String.Format("{0:n0}", video.Engagement.DislikeCount);
+                    progressBarLikeRatio.Value = (int)(video.Engagement.AverageRating * 100);
                     labelKeywords.Text = String.Join(", ", video.Keywords);
                     buttonDownload.Enabled = true;
                     buttonDownload.Text = "DOWNLOAD!!!";
