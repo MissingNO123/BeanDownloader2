@@ -62,6 +62,8 @@ namespace BeanDownloader2
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
+            buttonCancel.Enabled = false;
+            labelDownloading.Text = "Cancelling...";
             this.Close();
         }
 
