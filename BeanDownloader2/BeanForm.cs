@@ -10,9 +10,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using YoutubeExplode;
+using YoutubeExplode.Common;
 using YoutubeExplode.Converter;
 using YoutubeExplode.Exceptions;
-using YoutubeExplode.Internal;
+//using YoutubeExplode.Internal;
 //using YoutubeExplode.Internal.Parsers;
 //using YoutubeExplode.Models.MediaStreams;
 
@@ -54,7 +55,7 @@ namespace BeanDownloader2
 
             var path = "Downloads\\" + safeVideoTitle + 
                 (radioButtonAudio.Checked ? audioFormats[comboBoxFormat.SelectedIndex] : videoFormats[comboBoxFormat.SelectedIndex]);
-            DownloadForm dl = new DownloadForm(videoID, path);
+            DownloadForm dl = new DownloadForm(videoID, path, safeVideoTitle);
             dl.ShowDialog();
             buttonDownload.Enabled = true;
             buttonDownload.Text = "DOWNLOAD!!!";
@@ -87,10 +88,10 @@ namespace BeanDownloader2
                     //videoID = YoutubeClient.ParseVideoId(txtboxURL.Text);
                     var video = await ytClient.Videos.GetAsync(txtboxURL.Text);
                     videoID = video.Id;
-                    picboxThumbnail.Load(video.Thumbnails.MediumResUrl);
+                    picboxThumbnail.Load(video.Thumbnails.Where(thumb => thumb.Url.EndsWith(".jpg")).Last().Url.ToString());
                     //Console.WriteLine(video.Thumbnails.MediumResUrl);
                     videoTitle = labelVideoTitle.Text = video.Title;
-                    videoAuthor = labelVideoAuthor.Text = video.Author;
+                    videoAuthor = labelVideoAuthor.Text = video.Author.ToString();
                     videoDesc = txtboxVideoDesc.Text = video.Description;
                     labelDuration.Text = video.Duration.ToString();
                     labelViewCount.Text = String.Format("{0:n0}", video.Engagement.ViewCount);
