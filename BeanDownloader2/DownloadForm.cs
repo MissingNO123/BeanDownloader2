@@ -1,39 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading; 
+using System.Threading;
 using System.Windows.Forms;
 using YoutubeExplode;
 using YoutubeExplode.Converter;
-
 namespace BeanDownloader2
 {
     public partial class DownloadForm : Form
     {
-        CancellationTokenSource cts = new CancellationTokenSource(); 
-        string videoID, path;
-        public DownloadForm(string vid, string p)
+        CancellationTokenSource cts = new CancellationTokenSource();
+        string videoID, path, title;
+        public DownloadForm(string vid, string p, string t)
         {
             InitializeComponent();
             videoID = vid;
             path = p;
+            title = t;
             DownloadVideo();
         }
         private async void DownloadVideo()
         { 
             try
             {
-                YoutubeConverter ytConverter = new YoutubeConverter();
+                var ytConverter = new YoutubeClient();
                 CancellationToken token = cts.Token; 
                 //await ytConverter.DownloadVideoAsync(videoID, path, progressIndicator);
                 Progress<double> progressd = new Progress<double>();
                 progressd.ProgressChanged += ReportProgress;
-                await ytConverter.DownloadVideoAsync(videoID, path, progressd, token);
-                notifyIconDownload.BalloonTipText = ("Finished Downloading " + path).Truncate(63);
+                await ytConverter.Videos.DownloadAsync(videoID, path, progressd, token);
+                notifyIconDownload.BalloonTipText = ("Finished Downloading " + title).Truncate(63);
                 notifyIconDownload.ShowBalloonTip(5000);
                 //MessageBox.Show("Finished Downloading " + path, "Succ", MessageBoxButtons.OK);
                 this.Close();
